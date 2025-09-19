@@ -1,11 +1,16 @@
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { WallmartApp } from './components/WallmartApp'
 import './App.css'
 
 function App() {
+	const queryClient = new QueryClient()
+
 	return (
-		<>
-			<div className="btn btn-primary">Hello Vite + React!</div>
-			<div className="btn btn-secondary">Hello Vite + React!</div>
-		</>
+		<QueryClientProvider client={queryClient}>
+			<ReactQueryDevtools />
+			<WallmartApp />
+		</QueryClientProvider>
 	)
 }
 
