@@ -7,7 +7,7 @@ export type Product = {
 	price: number
 	description: string
 	category: string
-	image: string
+	images: string[]
 	rating: number
 }
 
@@ -20,7 +20,7 @@ export const useProducts = (category: string) => {
 		queryKey: ['products', category],
 		queryFn: async () => {
 			const response = await axios.get(
-				`https://dummyjson.com/category/${category}`,
+				`https://dummyjson.com/products/category/${category}`,
 			)
 			return response.data
 		},

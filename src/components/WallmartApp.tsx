@@ -21,7 +21,7 @@ export const WallmartApp = () => {
 				<div className="btn btn-secondary">Hello Vite + 4!</div>
 			</div>
 			<Header onCategorySelected={onCategorySelected} />
-			{selectedCategory && <ProductList selectedCategory={selectedCategory} />}
+			{selectedCategory && <ProductList category={selectedCategory} />}
 		</div>
 	)
 }
