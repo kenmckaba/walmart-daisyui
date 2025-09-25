@@ -10,3 +10,12 @@ export const ProductSkeleton = () => (
 		<div className="skeleton h-32 w-full" />
 	</div>
 )
+
+export const ProductSkeletonList = () => (
+	<div className="flex flex-wrap gap-4">
+		<ProductSkeleton />
+		<ProductSkeleton />
+		<ProductSkeleton />
+		<ProductSkeleton />
+	</div>
+)
