@@ -12,9 +12,18 @@ export const Header = ({ onCategorySelected }: HeaderProps) => {
 	}
 
 	return (
-		<div className="flex h-15 flex-row gap-1 items-center justify-center border-1 rounded-md">
-			<img className="h-18" src={walmartstar} alt="Walmart Logo" />
-			<CategoryList onSelected={onSelected} />
+		<div
+			className="flex h-15 gap-1 items-center w-full
+									justify-between border-1 rounded-md"
+		>
+			<div />
+			<div className="flex gap-4 items-center">
+				<img className="h-18" src={walmartstar} alt="Walmart Logo" />
+				<CategoryList onSelected={onSelected} />
+			</div>
+			<button type="button" className="btn btn-ghost left-auto">
+				Shopping cart
+			</button>
 		</div>
 	)
 }

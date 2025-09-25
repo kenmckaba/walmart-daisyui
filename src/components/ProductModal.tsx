@@ -1,4 +1,3 @@
-// import { useId } from 'react'
 type ProductModalProps = {
 	modalId: string
 }
