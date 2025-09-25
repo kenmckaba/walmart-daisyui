@@ -1,6 +1,6 @@
 import { type Product, useProducts } from './hooks/useProducts'
 import { ProductCard } from './ProductCard'
-import { ProductSkeleton, ProductSkeletonList } from './ProductSkeleton'
+import { ProductSkeletonList } from './ProductSkeleton'
 
 type ProductListProps = {
 	category: string
