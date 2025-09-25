@@ -19,6 +19,7 @@ export const useProducts = (category: string) => {
 	} = useQuery({
 		queryKey: ['products', category],
 		queryFn: async () => {
+			await new Promise((resolve) => setTimeout(resolve, 5000)) // simulate network delay
 			const response = await axios.get(
 				`https://dummyjson.com/products/category/${category}`,
 			)

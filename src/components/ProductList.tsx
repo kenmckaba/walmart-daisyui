@@ -1,5 +1,6 @@
 import { type Product, useProducts } from './hooks/useProducts'
 import { ProductCard } from './ProductCard'
+import { ProductSkeleton } from './ProductSkeleton'
 
 type ProductListProps = {
 	category: string
@@ -8,7 +9,15 @@ type ProductListProps = {
 export const ProductList = ({ category }: ProductListProps) => {
 	const { products, isPending, error } = useProducts(category)
 
-	if (isPending) return <div>Loading...</div>
+	if (isPending)
+		return (
+			<div className="flex flex-wrap gap-4">
+				<ProductSkeleton />
+				<ProductSkeleton />
+				<ProductSkeleton />
+				<ProductSkeleton />
+			</div>
+		)
 	if (error) return <div>Error loading products</div>
 
 	return (
