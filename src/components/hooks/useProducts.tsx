@@ -1,4 +1,4 @@
-import { useQuery } from '@tanstack/react-query'
+import { useSuspenseQuery } from '@tanstack/react-query'
 import axios from 'axios'
 
 export type Product = {
@@ -12,24 +12,15 @@ export type Product = {
 }
 
 export const useProducts = (category: string) => {
-	const {
-		isPending,
-		error,
-		data: products,
-	} = useQuery({
+	const { data: products } = useSuspenseQuery({
 		queryKey: ['products', category],
 		queryFn: async () => {
-			await new Promise((resolve) => setTimeout(resolve, 5000)) // simulate network delay
+			await new Promise((resolve) => setTimeout(resolve, 2000)) // simulate network delay
 			const response = await axios.get(
 				`https://dummyjson.com/products/category/${category}`,
 			)
 			return response.data
 		},
 	})
-
-	return {
-		products,
-		isPending,
-		error,
-	}
+	return { products }
 }
