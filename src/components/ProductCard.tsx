@@ -9,9 +9,9 @@ type ProductCardProps = {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
 	const modalId = useId()
-	const modal = document.getElementById(modalId) as HTMLDialogElement
 
-	const showModal = () => {
+	const showProductModal = () => {
+		const modal = document.getElementById(modalId) as HTMLDialogElement
 		modal.showModal()
 	}
 
@@ -29,7 +29,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 						<button
 							type="button"
 							className="btn btn-primary"
-							onClick={showModal}
+							onClick={showProductModal}
 						>
 							Add to cart
 						</button>
