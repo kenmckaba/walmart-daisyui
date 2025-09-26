@@ -50,17 +50,21 @@ export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 	return (
 		<dialog id={modalId} className="modal">
 			<div className="modal-box absolute right-5 top-25">
-				<h2>Shopping Cart</h2>
-				<ul>
+				<h1 className="font-bold mb-3">Shopping Cart</h1>
+				<div className="grid-container grid grid-cols-3 gap-2 text-xs">
+					<div className="font-semibold col-span-1">Product</div>
+					<div className="font-semibold col-span-1">Price</div>
+					<div className="font-semibold col-span-1">Total</div>
 					{cart.products.map((product) => (
-						<li key={product.id}>
-							{product.title} - Qty: {product.quantity} - Price: $
-							{product.price} - Total: ${product.total}
-						</li>
+						<>
+							<div key={`name-${product.id}`}>{product.title}</div>
+							<div key={`price-${product.id}`}>${product.price}</div>
+							<div key={`total-${product.id}`}>${product.total}</div>
+						</>
 					))}
-				</ul>
+				</div>
 				<div>
-					<strong>Total:</strong> ${cart.total}
+					<strong className="mt-10">Total:</strong> ${cart.total}
 				</div>
 				<div>
 					<strong>Discounted Total:</strong> ${cart.discountedTotal}
