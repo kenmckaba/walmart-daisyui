@@ -76,17 +76,29 @@ export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 					<div className="font-semibold">Product</div>
 					<div className="font-semibold text-right">Price</div>
 					<div className="font-semibold text-right">Total</div>
-					{cart.products.map((product) => (
-						<>
-							<div key={`name-${product.id}`}>{product.title}</div>
-							<div className="text-right" key={`price-${product.id}`}>
-								{formattedCurrency(product.price)}
-							</div>
-							<div className="text-right" key={`total-${product.id}`}>
-								{formattedCurrency(product.total)}
-							</div>
-						</>
-					))}
+					{cart.products.map((product, idx) => {
+						const rowClass = idx % 2 === 0 ? 'bg-base-200' : 'bg-base-400'
+						console.log('rowClass', idx, rowClass)
+						return (
+							<>
+								<div key={`name-${product.id}`} className={rowClass}>
+									{product.title}
+								</div>
+								<div
+									className={`text-right ${rowClass}`}
+									key={`price-${product.id}`}
+								>
+									{formattedCurrency(product.price)}
+								</div>
+								<div
+									className={`text-right ${rowClass}`}
+									key={`total-${product.id}`}
+								>
+									{formattedCurrency(product.total)}
+								</div>
+							</>
+						)
+					})}
 				</div>
 				<div className="text-right mt-3">
 					<strong>Total: </strong>
