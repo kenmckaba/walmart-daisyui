@@ -1,7 +1,7 @@
+import { Suspense } from 'react'
 import { type Product, useProducts } from './hooks/useProducts'
 import { ProductCard } from './ProductCard'
 import { ProductSkeletonList } from './ProductSkeleton'
-import { Suspense } from 'react'
 
 type ProductListProps = {
 	category: string

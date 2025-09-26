@@ -11,10 +11,10 @@
 		"skipLibCheck": true,
 		"resolveJsonModule": true,
 		"isolatedModules": true,
-    "noImplicitAny": true,
-    "noUncheckedIndexedAccess": true,
-    "exactOptionalPropertyTypes": true,
-    "useUnknownInCatchVariables": true
+		"noImplicitAny": true,
+		"noUncheckedIndexedAccess": true,
+		"exactOptionalPropertyTypes": true,
+		"useUnknownInCatchVariables": true
 	},
 	"references": [
 		{ "path": "./tsconfig.app.json" },

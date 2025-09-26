@@ -1,6 +1,6 @@
+import { useState } from 'react'
 import { Header } from './Header'
 import { ProductList } from './ProductList'
-import { useState } from 'react'
 
 export const WallmartApp = () => {
 	const [selectedCategory, setSelectedCategory] = useState<string | null>(null)
