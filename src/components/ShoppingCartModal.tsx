@@ -49,8 +49,8 @@ export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 
 	return (
 		<dialog id={modalId} className="modal">
-			<div className="modal-box">
-				<h2>Shopping Cart (ID: {cart.id})</h2>
+			<div className="modal-box absolute right-5 top-25">
+				<h2>Shopping Cart</h2>
 				<ul>
 					{cart.products.map((product) => (
 						<li key={product.id}>
