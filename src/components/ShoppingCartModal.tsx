@@ -71,11 +71,11 @@ export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 						✕
 					</button>
 				</form>
-				<h1 className="font-bold mb-3">Shopping Cart</h1>
+				<h1 className="font-bold mb-3 text-center">Shopping Cart</h1>
 				<div className="grid-container grid grid-cols-[3fr_1fr_1fr] gap-2 text-xs">
 					<div className="font-semibold">Product</div>
-					<div className="font-semibold">Price</div>
-					<div className="font-semibold">Total</div>
+					<div className="font-semibold text-right">Price</div>
+					<div className="font-semibold text-right">Total</div>
 					{cart.products.map((product) => (
 						<>
 							<div key={`name-${product.id}`}>{product.title}</div>
@@ -88,11 +88,11 @@ export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 						</>
 					))}
 				</div>
-				<div className="float-right">
+				<div className="text-right mt-3">
 					<strong>Total: </strong>
 					{formattedCurrency(cart.total)}
 				</div>
-				<div className="float-right">
+				<div className="text-right">
 					<strong>Discounted Total: </strong>
 					{formattedCurrency(cart.discountedTotal)}
 				</div>
