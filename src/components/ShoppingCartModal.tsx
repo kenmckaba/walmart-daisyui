@@ -22,6 +22,13 @@ type Cart = {
 
 type ShoppingCartProps = { modalId: string }
 
+const formattedCurrency = (val: number): string => {
+	return new Intl.NumberFormat('en-US', {
+		style: 'currency',
+		currency: 'USD',
+	}).format(val)
+}
+
 export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 	const [cart, setCart] = useState<Cart | null>(null)
 	const [loading, setLoading] = useState(true)
@@ -50,24 +57,44 @@ export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 	return (
 		<dialog id={modalId} className="modal">
 			<div className="modal-box absolute right-5 top-25">
+				<form method="dialog">
+					<button
+						type="button"
+						onClick={() => {
+							const dialog = document.getElementById(
+								modalId,
+							) as HTMLDialogElement | null
+							if (dialog) dialog.close()
+						}}
+						className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2"
+					>
+						✕
+					</button>
+				</form>
 				<h1 className="font-bold mb-3">Shopping Cart</h1>
-				<div className="grid-container grid grid-cols-3 gap-2 text-xs">
-					<div className="font-semibold col-span-1">Product</div>
-					<div className="font-semibold col-span-1">Price</div>
-					<div className="font-semibold col-span-1">Total</div>
+				<div className="grid-container grid grid-cols-[3fr_1fr_1fr] gap-2 text-xs">
+					<div className="font-semibold">Product</div>
+					<div className="font-semibold">Price</div>
+					<div className="font-semibold">Total</div>
 					{cart.products.map((product) => (
 						<>
 							<div key={`name-${product.id}`}>{product.title}</div>
-							<div key={`price-${product.id}`}>${product.price}</div>
-							<div key={`total-${product.id}`}>${product.total}</div>
+							<div className="text-right" key={`price-${product.id}`}>
+								{formattedCurrency(product.price)}
+							</div>
+							<div className="text-right" key={`total-${product.id}`}>
+								{formattedCurrency(product.total)}
+							</div>
 						</>
 					))}
 				</div>
-				<div>
-					<strong className="mt-10">Total:</strong> ${cart.total}
+				<div className="float-right">
+					<strong>Total: </strong>
+					{formattedCurrency(cart.total)}
 				</div>
-				<div>
-					<strong>Discounted Total:</strong> ${cart.discountedTotal}
+				<div className="float-right">
+					<strong>Discounted Total: </strong>
+					{formattedCurrency(cart.discountedTotal)}
 				</div>
 			</div>
 		</dialog>
