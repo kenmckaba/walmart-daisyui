@@ -77,8 +77,7 @@ export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 					<div className="font-semibold text-right">Price</div>
 					<div className="font-semibold text-right">Total</div>
 					{cart.products.map((product, idx) => {
-						const rowClass = idx % 2 === 0 ? 'bg-base-200' : 'bg-base-400'
-						console.log('rowClass', idx, rowClass)
+						const rowClass = idx % 2 === 0 ? 'bg-gray-100' : 'bg-base-400'
 						return (
 							<>
 								<div key={`name-${product.id}`} className={rowClass}>
