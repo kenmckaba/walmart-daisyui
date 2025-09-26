@@ -10,7 +10,7 @@ type ProductListProps = {
 const ProductListContent = ({ category }: ProductListProps) => {
 	const { products } = useProducts(category)
 	return (
-		<div className="flex flex-wrap gap-4">
+		<div className="flex flex-wrap gap-4 justify-center">
 			{products?.products.map((product: Product) => (
 				<ProductCard key={product.id} product={product} />
 			))}
