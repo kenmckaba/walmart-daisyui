@@ -19,7 +19,12 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 		<>
 			<div className="card bg-base-100 w-64 shadow-sm">
 				<figure>
-					<img key={product.images[0]} src={product.images[0]} alt={'blah'} />
+					<img
+						key={product.images[0]}
+						src={product.images[0]}
+						loading="lazy"
+						alt={'blah'}
+					/>
 					{/* <ImageList images={product.images} title={product.title} /> */}
 				</figure>
 				<div className="card-body">
