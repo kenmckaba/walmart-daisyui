@@ -50,7 +50,7 @@ export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 			})
 	}, [])
 
-	if (loading) return <div>Loading...</div>
+	if (loading) return <div></div>
 	if (error) return <div>Error: {error}</div>
 	if (!cart) return <div>No cart found.</div>
 

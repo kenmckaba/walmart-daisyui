@@ -25,6 +25,14 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 				<div className="card-body">
 					<h2 className="card-title">{product.title}</h2>
 					<p>{product.description}</p>
+					<p>Price: {product.price}</p>
+					<div>
+						<div className="flex flex-col items-end p-4 w-20">
+							<p>Quantity:</p>
+							<p>Total:</p>
+						</div>
+						<input type="number" className="input max-w-xs" />
+					</div>
 					<div className="card-actions justify-end">
 						<button
 							type="button"
