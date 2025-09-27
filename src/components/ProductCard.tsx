@@ -1,7 +1,8 @@
 import { ImageList } from './ImageList'
 import { useId } from 'react'
 import type { Product } from './hooks/useProducts'
-import { ProductModal } from './ProductModal'
+// import { ProductModal } from './ProductModal'
+import ShoppingCartModal from './ShoppingCartModal'
 
 type ProductCardProps = {
 	product: Product
@@ -10,7 +11,7 @@ type ProductCardProps = {
 export const ProductCard = ({ product }: ProductCardProps) => {
 	const modalId = useId()
 
-	const showProductModal = () => {
+	const showCartModal = () => {
 		const modal = document.getElementById(modalId) as HTMLDialogElement
 		modal.showModal()
 	}
@@ -28,7 +29,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 						<button
 							type="button"
 							className="btn btn-primary"
-							onClick={showProductModal}
+							onClick={showCartModal}
 						>
 							Add to cart
 						</button>
@@ -36,7 +37,8 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 				</div>
 			</div>
 
-			<ProductModal modalId={modalId} />
+			{/* <ProductModal modalId={modalId} /> */}
+			<ShoppingCartModal modalId={modalId} />
 		</>
 	)
 }
