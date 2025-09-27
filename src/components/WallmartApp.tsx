@@ -12,7 +12,7 @@ export const WallmartApp = () => {
 
 	return (
 		<div
-			className="flex flex-col gap-2 p-4
+			className="flex flex-col gap-2 p-4 h-screen
      bg-blue-50 border-2 border-blue-200"
 		>
 			<Header onCategorySelected={onCategorySelected} />

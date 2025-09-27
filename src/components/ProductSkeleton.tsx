@@ -12,7 +12,7 @@ export const ProductSkeleton = () => (
 )
 
 export const ProductSkeletonList = ({ count = 4 }: { count?: number }) => (
-	<div className="flex flex-wrap gap-4">
+	<div className="flex flex-wrap gap-4 justify-center">
 		{Array.from({ length: count }).map(() => (
 			<ProductSkeleton key={crypto.randomUUID()} />
 		))}
