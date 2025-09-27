@@ -5,7 +5,7 @@ type ImageListProps = {
 
 export const ImageList = ({ images, title }: ImageListProps) => {
 	return (
-		<div>
+		<div className="h-62 overflow-y-auto">
 			{images.map((image) => (
 				<img key={image} src={image} alt={title} />
 			))}
