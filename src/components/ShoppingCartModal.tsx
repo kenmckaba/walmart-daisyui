@@ -1,14 +1,5 @@
 import { useEffect, useState } from 'react'
-
-type CartProduct = {
-	id: number
-	title: string
-	price: number
-	quantity: number
-	total: number
-	discountPercentage: number
-	discountedPrice: number
-}
+import type { CartProduct } from '../state/useShoppingCart'
 
 type Cart = {
 	id: number
