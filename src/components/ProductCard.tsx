@@ -1,8 +1,8 @@
 import { ImageList } from './ImageList'
 import { useId, useState } from 'react'
 import type { Product } from './hooks/useProducts'
-// import { ProductModal } from './ProductModal'
-import ShoppingCartModal from './ShoppingCartModal'
+import { ShoppingCartModal } from './ShoppingCartModal'
+import { useShoppingCart } from '../state/useShoppingCart'
 
 type ProductCardProps = {
 	product: Product
@@ -10,7 +10,9 @@ type ProductCardProps = {
 
 export const ProductCard = ({ product }: ProductCardProps) => {
 	const modalId = useId()
+	const [quantity, setQuantity] = useState(1)
 	const [totalCost, setTotalCost] = useState(product.price)
+	const addItem = useShoppingCart((state) => state.addItem)
 
 	const showCartModal = () => {
 		const modal = document.getElementById(modalId) as HTMLDialogElement
@@ -18,8 +20,22 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 	}
 
 	const handleQuantityChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-		const quantity = parseInt(e.target.value, 10)
-		setTotalCost(quantity * product.price)
+		const qty = parseInt(e.target.value, 10)
+		setQuantity(qty)
+		setTotalCost(qty * product.price)
+	}
+
+	const handleAddToCart = () => {
+		addItem({
+			id: product.id,
+			title: product.title,
+			price: product.price,
+			quantity,
+			total: product.price * quantity,
+			discountPercentage: 0,
+			discountedPrice: product.price * quantity, // adjust if you have discount logic
+		})
+		showCartModal()
 	}
 
 	const priceString = `$${product.price}`
@@ -44,8 +60,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 									type="number"
 									min={1}
 									className="input h-6"
-									defaultValue="1"
-									self-center
+									value={quantity}
 									onChange={handleQuantityChange}
 								/>
 							</div>
@@ -57,7 +72,7 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 						<button
 							type="button"
 							className="btn btn-primary"
-							onClick={showCartModal}
+							onClick={handleAddToCart}
 						>
 							Add to cart
 						</button>

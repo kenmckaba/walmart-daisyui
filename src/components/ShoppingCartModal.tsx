@@ -1,15 +1,4 @@
-import { useEffect, useState } from 'react'
-import type { CartProduct } from '../state/useShoppingCart'
-
-type Cart = {
-	id: number
-	products: CartProduct[]
-	total: number
-	discountedTotal: number
-	userId: number
-	totalProducts: number
-	totalQuantity: number
-}
+import { useShoppingCart } from '../state/useShoppingCart'
 
 type ShoppingCartProps = { modalId: string }
 
@@ -21,29 +10,8 @@ const formattedCurrency = (val: number): string => {
 }
 
 export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
-	const [cart, setCart] = useState<Cart | null>(null)
-	const [loading, setLoading] = useState(true)
-	const [error, setError] = useState<string | null>(null)
-
-	useEffect(() => {
-		fetch('https://dummyjson.com/carts/1')
-			.then((res) => {
-				if (!res.ok) throw new Error('Failed to fetch cart')
-				return res.json()
-			})
-			.then((data) => {
-				setCart(data)
-				setLoading(false)
-			})
-			.catch((err) => {
-				setError(err.message)
-				setLoading(false)
-			})
-	}, [])
-
-	if (loading) return <div></div>
-	if (error) return <div>Error: {error}</div>
-	if (!cart) return <div>No cart found.</div>
+	const items = useShoppingCart((state) => state.items)
+	const total = items.reduce((sum, item) => sum + item.total, 0)
 
 	return (
 		<dialog id={modalId} className="modal">
@@ -67,7 +35,10 @@ export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 					<div className="font-semibold">Product</div>
 					<div className="font-semibold text-right">Price</div>
 					<div className="font-semibold text-right">Total</div>
-					{cart.products.map((product, idx) => {
+					{items.length === 0 && (
+						<div className="col-span-3 text-center py-4">No items in cart.</div>
+					)}
+					{items.map((product, idx) => {
 						const rowClass = idx % 2 === 0 ? 'bg-gray-100' : 'bg-base-400'
 						return (
 							<>
@@ -92,15 +63,9 @@ export const ShoppingCartModal = ({ modalId }: ShoppingCartProps) => {
 				</div>
 				<div className="text-right mt-3">
 					<strong>Total: </strong>
-					{formattedCurrency(cart.total)}
-				</div>
-				<div className="text-right">
-					<strong>Discounted Total: </strong>
-					{formattedCurrency(cart.discountedTotal)}
+					{formattedCurrency(total)}
 				</div>
 			</div>
 		</dialog>
 	)
 }
-
-export default ShoppingCartModal

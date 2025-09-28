@@ -2,6 +2,7 @@ import { useId } from 'react'
 import walmartstar from '../assets/walmart-logo.png'
 import { CategoryList } from './CategoryList'
 import { ShoppingCartModal } from './ShoppingCartModal'
+import { useShoppingCart } from '../state/useShoppingCart'
 
 type HeaderProps = {
 	onCategorySelected: (item: string) => void
@@ -14,17 +15,18 @@ export const Header = ({ onCategorySelected }: HeaderProps) => {
 	}
 
 	const modalId = useId()
-
 	const showShoppingCartModal = () => {
 		const modal = document.getElementById(modalId) as HTMLDialogElement
 		modal.showModal()
 	}
 
+	const cartCount = useShoppingCart((state) => state.items.length)
+
 	return (
 		<>
 			<div
 				className="flex h-15 gap-1 items-center w-full
-									justify-between border-1 rounded-md"
+                    justify-between border-1 rounded-md"
 			>
 				<div />
 				<div className="flex gap-4 items-center">
@@ -37,6 +39,9 @@ export const Header = ({ onCategorySelected }: HeaderProps) => {
 					className="btn btn-ghost mr-2"
 				>
 					Shopping cart
+					{cartCount > 0 && (
+						<span className="badge badge-primary ml-2">{cartCount}</span>
+					)}
 				</button>
 			</div>
 
