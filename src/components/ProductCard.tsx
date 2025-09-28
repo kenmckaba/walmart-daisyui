@@ -33,17 +33,17 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 				</figure>
 				<div className="card-body">
 					<h2 className="card-title">{product.title}</h2>
-					<p>{product.description}</p>
+					<p className="mb-0">{product.description}</p>
 					<div>
-						<div className="grid grid-cols-2 grid-rows-3 mr-10 mt-3">
+						<div className="grid grid-cols-2 grid-rows-3 mr-10 mt-0">
 							<div className="justify-self-end mr-1 self-center">Price:</div>
 							<div className="self-center">{priceString}</div>
 							<div className="justify-self-end mr-1 self-center">Quantity:</div>
-							<div>
+							<div className="mt-1">
 								<input
 									type="number"
 									min={1}
-									className="input"
+									className="input h-6"
 									defaultValue="1"
 									self-center
 									onChange={handleQuantityChange}
@@ -65,7 +65,6 @@ export const ProductCard = ({ product }: ProductCardProps) => {
 				</div>
 			</div>
 
-			{/* <ProductModal modalId={modalId} /> */}
 			<ShoppingCartModal modalId={modalId} />
 		</>
 	)
