@@ -1,8 +1,8 @@
 import { useId } from 'react'
 import walmartstar from '../assets/walmart-logo.png'
+import { useShoppingCart } from '../state/useShoppingCart'
 import { CategoryList } from './CategoryList'
 import { ShoppingCartModal } from './ShoppingCartModal'
-import { useShoppingCart } from '../state/useShoppingCart'
 
 type HeaderProps = {
 	onCategorySelected: (item: string) => void

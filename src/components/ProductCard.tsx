@@ -1,8 +1,8 @@
-import { ImageList } from './ImageList'
 import { useId, useState } from 'react'
-import type { Product } from './hooks/useProducts'
-import { ShoppingCartModal } from './ShoppingCartModal'
 import { useShoppingCart } from '../state/useShoppingCart'
+import type { Product } from './hooks/useProducts'
+import { ImageList } from './ImageList'
+import { ShoppingCartModal } from './ShoppingCartModal'
 
 type ProductCardProps = {
 	product: Product
