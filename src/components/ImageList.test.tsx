@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import '@testing-library/jest-dom'
 import { render, screen } from '@testing-library/react'
 import { ImageList } from './ImageList'
@@ -25,13 +25,15 @@ describe('ImageList', () => {
 		render(<ImageList images={mockImages} title={mockTitle} />)
 
 		const images = screen.getAllByAltText(mockTitle)
-		images.forEach(image => {
+		images.forEach((image) => {
 			expect(image).toHaveAttribute('alt', mockTitle)
 		})
 	})
 
 	it('renders container with correct CSS classes', () => {
-		const { container } = render(<ImageList images={mockImages} title={mockTitle} />)
+		const { container } = render(
+			<ImageList images={mockImages} title={mockTitle} />,
+		)
 
 		const containerDiv = container.firstChild as HTMLElement
 		expect(containerDiv).toHaveClass('h-62', 'overflow-y-auto')
@@ -66,7 +68,9 @@ describe('ImageList', () => {
 	})
 
 	it('uses image src as unique keys', () => {
-		const { container } = render(<ImageList images={mockImages} title={mockTitle} />)
+		const { container } = render(
+			<ImageList images={mockImages} title={mockTitle} />,
+		)
 
 		const images = container.querySelectorAll('img')
 		expect(images).toHaveLength(3)

@@ -1,8 +1,8 @@
-import { describe, it, expect, vi, beforeEach } from 'vitest'
+import { beforeEach, describe, expect, it, vi } from 'vitest'
 import '@testing-library/jest-dom'
-import { render, screen, fireEvent } from '@testing-library/react'
-import { Header } from './Header'
+import { fireEvent, render, screen } from '@testing-library/react'
 import * as useShoppingCartModule from '../state/useShoppingCart'
+import { Header } from './Header'
 
 // Mock the CategoryList component
 vi.mock('./CategoryList', () => ({
