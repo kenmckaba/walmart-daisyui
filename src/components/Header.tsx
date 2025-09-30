@@ -10,7 +10,6 @@ type HeaderProps = {
 
 export const Header = ({ onCategorySelected }: HeaderProps) => {
 	const onSelected = (item: string) => {
-		console.log('selected item', item)
 		onCategorySelected(item)
 	}
 
